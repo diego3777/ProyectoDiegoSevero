@@ -26,11 +26,16 @@ class BusquedaJugadorForm(forms.Form):
     
     
 class PostForm(forms.ModelForm):
-    imagen = ImageField(required=False)  
+    imagen = forms.ImageField(required=False)  
+    contenido_resumido = forms.CharField(
+        label='Contenido Resumido',  
+        widget=forms.Textarea(attrs={'rows': 4}),  
+        required=False 
+    )
 
     class Meta:
         model = Post
-        fields = ['titulo', 'contenido', 'imagen']
+        fields = ['titulo', 'contenido', 'contenido_resumido', 'imagen']  
         
 class UserProfileForm(forms.ModelForm):
     class Meta:

@@ -16,6 +16,7 @@ class jugador (models.Model):
     def  __str__(self):
         return f"{self.nombre} - {self.edad} - {self.equipo_actual}"
     
+
     
 
 
@@ -30,6 +31,7 @@ from django.db import models
 class Post(models.Model):
     titulo = models.CharField(max_length=200)
     contenido = models.TextField()
+    contenido_resumido = models.TextField()
     contenido_html = models.TextField() 
     autor = models.ForeignKey(User, on_delete=models.CASCADE)
     datos_publicacion = models.DateTimeField(auto_now_add=True)
@@ -56,4 +58,8 @@ class UserProfile(models.Model):
     def __str__(self):
         return self.usuario.username
     
-    
+class Comentario(models.Model):
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
+    contenido = models.TextField()
+    fecha = models.DateTimeField(auto_now_add=True)
+    publicacion = models.ForeignKey(Post, on_delete=models.CASCADE)

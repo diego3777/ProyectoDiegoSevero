@@ -125,6 +125,7 @@ def create_post(request):
         titulo = request.POST['titulo']
         contenido = request.POST['contenido']
         autor = request.user
+        contenido_resumido = contenido[:200]  
         nueva_publicacion = Post(titulo=titulo, contenido=contenido, autor=autor)
         nueva_publicacion.save()
         return redirect('home')
