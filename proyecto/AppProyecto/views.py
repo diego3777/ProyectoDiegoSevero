@@ -215,4 +215,30 @@ def view_profile(request):
 
 
 
-    
+#Comentario
+
+from django.shortcuts import render, redirect, get_object_or_404
+from .models import Post, Comentario
+from .forms import ComentarioForm
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def crear_comentario(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            comentario = form.save(commit=False)
+            comentario.autor = request.user
+            comentario.publicacion = post
+            comentario.save()
+            return redirect('post_detail', post_id=post_id)
+    else:
+        form = ComentarioForm()
+
+    return render(request, 'crear_comentario.html', {'form': form})
+
+
+def informacion_sobre_mi(request):
+    return render(request, 'sobre_mi.html')

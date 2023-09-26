@@ -23,11 +23,12 @@ urlpatterns =[
     path('registro/', views.registro_usuario, name='registro_usuario'),
     path('logout/', auth_views.LogoutView.as_view(), name='cerrar_sesion'),
     path('perfil/', views.view_profile, name='ver_perfil'),
-    
+    path('crear_comentario/<int:post_id>/', crear_comentario, name='crear_comentario'),
+    path('sobre_mi/', views.informacion_sobre_mi, name='sobre_mi'),
+]
   
     
     
-    ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

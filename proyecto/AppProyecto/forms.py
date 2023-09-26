@@ -41,3 +41,11 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['nombre', 'apellido', 'fecha_nacimiento', 'email', 'avatar']
+        
+        
+from .models import Comentario
+
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['contenido']
